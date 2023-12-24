@@ -44,7 +44,7 @@ def chck(cc,mes,ano,cvv):
     req1 = session.get('https://www.electrohome.com/checkout/cart/',headers=headers,proxies=proxies)
                     
     soup_response = req1.text
-    soup = BeautifulSoup(soup_response , 'lxml')
+    soup = BeautifulSoup(soup_response , 'html.parser')
     form_key = soup.find("input", {"name": "form_key"})["value"]
                    
     if cc[:1] == "4":
@@ -236,7 +236,7 @@ def chck(cc,mes,ano,cvv):
                     
     fin = time.perf_counter()
     resposta = req3.text
-    soup = BeautifulSoup(resposta , 'lxml')
+    soup = BeautifulSoup(resposta , 'html.parser')
                     
                    
     if int(resposta.find('name="PROCCVV2"')) > 0 :
